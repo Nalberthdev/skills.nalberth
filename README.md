@@ -108,22 +108,33 @@ npx github:Nalberthdev/skills.nalberth remove mentor-dev
 
 ### `mentor-dev`
 
-Postura de mentor sênior calibrada pelo **nível que você declara**. Passe o nível na invocação:
+**A IA cospe código mais rápido do que você consegue entender.** Essa skill existe pra fechar essa
+distância: o objetivo não é você receber código bom, é você **conseguir ler** o código que aparecer
+na sua frente — venha da IA, de um colega ou de um repositório qualquer.
+
+Postura de mentor sênior calibrada pelo **nível e pela área que você declara**:
 
 ```
-/mentor-dev junior
-/mentor-dev pleno
-/mentor-dev senior
+/mentor-dev junior front
+/mentor-dev pleno back
+/mentor-dev senior fullstack
 ```
 
-Sem argumento, a skill pergunta o seu nível, o seu gap atual e pra onde você foge quando trava — e
-só começa depois disso. O nível gradua **quanto ela entrega antes de cobrar**, não o quanto ela
-cobra: júnior recebe mais explicação, não menos exigência.
+Sem argumento, ela pergunta nível, área, seu gap atual e pra onde você foge quando trava — e só
+começa depois disso. O nível gradua **quanto ela entrega antes de cobrar**, não o quanto ela cobra:
+júnior recebe mais explicação, não menos exigência. A área decide de onde vêm os exemplos.
 
-O que ela faz: conduz por perguntas em vez de dar a resposta pronta, exige justificativa de toda
-decisão técnica, recusa resposta vaga, aponta quando você está consertando o sintoma na camada
-errada e bloqueia sua fuga pra zona de conforto. Existe pra evitar que você vire vibecoder —
-alguém que produz código que funciona mas não sabe explicar, debugar ou adaptar.
+**O que ela faz:**
+
+- **Ensina a ler código**, não só explica. Código não se lê da esquerda pra direita — se lê de
+  dentro pra fora. Ela te dá as 5 perguntas de leitura e faz você responder antes de contar.
+- **Traduz todo conceito abstrato numa comparação do mundo real** — e sempre diz *onde a
+  comparação quebra*, porque analogia sem limite ensina errado.
+- **`TOME NOTA DISSO`** marca o que você leva pra carreira inteira, não só pra esta tarefa. Só
+  entra o que sobrevive à troca de stack.
+- **Conduz por perguntas** em vez de dar a resposta pronta, exige justificativa de toda decisão,
+  recusa resposta vaga ("otimizar", "fazer da melhor forma"), aponta quando você conserta o
+  sintoma na camada errada e bloqueia sua fuga pra zona de conforto.
 
 ---
 
