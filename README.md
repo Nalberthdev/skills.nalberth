@@ -1,0 +1,164 @@
+# nalberth-skills
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org)
+
+Minhas skills de IA em português, instaláveis em qualquer máquina e em **qualquer ferramenta de
+IA** com um comando.
+
+Você escreve a skill uma vez. O CLI converte para o formato que cada ferramenta entende — Claude
+Code, Cursor, Windsurf, GitHub Copilot, Gemini CLI ou o padrão aberto `AGENTS.md`.
+
+---
+
+## Instalação rápida
+
+Não precisa clonar nem instalar nada — o `npx` baixa e roda na hora:
+
+```bash
+# ver o que existe
+npx nalberth-skills list
+
+# instalar no Claude Code (padrão, vale pra todos os seus projetos)
+npx nalberth-skills add mentor-dev
+
+# instalar no Cursor, só neste projeto
+npx nalberth-skills add mentor-dev --target cursor
+```
+
+Requer [Node.js](https://nodejs.org) 18 ou superior.
+
+---
+
+## Ferramentas suportadas
+
+| `--target`  | Ferramenta                                    | Onde escreve                                  | Escopo             |
+| ----------- | --------------------------------------------- | --------------------------------------------- | ------------------ |
+| `claude`    | Claude Code / Claude Desktop *(padrão)*        | `~/.claude/skills/<skill>/`                    | máquina ou projeto |
+| `cursor`    | Cursor                                         | `.cursor/rules/<skill>.mdc`                    | projeto            |
+| `windsurf`  | Windsurf                                       | `.windsurf/rules/<skill>.md`                   | projeto            |
+| `copilot`   | GitHub Copilot (VS Code)                       | `.github/instructions/<skill>.instructions.md` | projeto            |
+| `agents`    | Codex, Zed, Aider, Jules e outros              | `AGENTS.md`                                    | projeto            |
+| `gemini`    | Gemini CLI                                     | `~/.gemini/GEMINI.md` ou `GEMINI.md`           | máquina ou projeto |
+| `print`     | ChatGPT, Claude.ai, Gemini — qualquer chat     | imprime no terminal pra copiar e colar         | —                  |
+
+Não achou a sua? Use `print` e cole no chat:
+
+```bash
+npx nalberth-skills add mentor-dev --target print          # imprime na tela
+npx nalberth-skills add mentor-dev -t print | xclip -sel c # copia direto (Linux)
+npx nalberth-skills add mentor-dev -t print | pbcopy       # copia direto (macOS)
+```
+
+Instalar em alvos que compartilham um arquivo (`agents`, `gemini`) é **idempotente**: a skill entra
+entre marcadores HTML e reinstalar substitui o bloco anterior em vez de duplicar.
+
+---
+
+## Comandos
+
+```bash
+nalberth-skills list                  # lista as skills disponíveis
+nalberth-skills targets               # lista os alvos de IA suportados
+nalberth-skills add <skill...>        # instala
+nalberth-skills remove <skill...>     # desinstala
+nalberth-skills validate              # checa o formato das skills do repositório
+```
+
+**Flags:**
+
+| Flag                | Efeito                                                          |
+| ------------------- | --------------------------------------------------------------- |
+| `-t`, `--target`    | ferramenta de destino (padrão: `claude`)                         |
+| `--local`           | instala no projeto atual em vez de na máquina inteira            |
+| `--all`             | aplica a todas as skills disponíveis                             |
+
+```bash
+# todas as skills, para o Copilot, neste projeto
+npx nalberth-skills add --all --target copilot
+
+# desinstalar
+npx nalberth-skills remove mentor-dev
+```
+
+---
+
+## Skills disponíveis
+
+### `mentor-dev`
+
+Postura de mentor sênior calibrada pelo **nível que você declara**. Passe o nível na invocação:
+
+```
+/mentor-dev junior
+/mentor-dev pleno
+/mentor-dev senior
+```
+
+Sem argumento, a skill pergunta o seu nível, o seu gap atual e pra onde você foge quando trava — e
+só começa depois disso. O nível gradua **quanto ela entrega antes de cobrar**, não o quanto ela
+cobra: júnior recebe mais explicação, não menos exigência.
+
+O que ela faz: conduz por perguntas em vez de dar a resposta pronta, exige justificativa de toda
+decisão técnica, recusa resposta vaga, aponta quando você está consertando o sintoma na camada
+errada e bloqueia sua fuga pra zona de conforto. Existe pra evitar que você vire vibecoder —
+alguém que produz código que funciona mas não sabe explicar, debugar ou adaptar.
+
+---
+
+## Criar a sua própria skill
+
+Este repositório é um esqueleto: dá pra fazer fork e trocar por skills suas.
+
+1. Crie a pasta `skills/<nome-da-skill>/`. O nome precisa ser kebab-case minúsculo.
+2. Dentro dela, crie `SKILL.md` começando com o frontmatter:
+
+   ```markdown
+   ---
+   name: nome-da-skill
+   description: Uma frase dizendo o que a skill faz e quando a IA deve acioná-la.
+   ---
+
+   # Título
+
+   O conteúdo da skill em markdown.
+   ```
+
+3. Rode `npx nalberth-skills validate` — ele confere que o `name` bate com o nome da pasta, que a
+   `description` existe e que o corpo não está vazio.
+
+A `description` é o que faz a IA decidir sozinha se aciona a skill. Escreva ela como gatilho
+("Use sempre que…"), não como resumo.
+
+Detalhes e convenções em [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## Como funciona
+
+A skill é escrita **uma vez** no formato do Claude Code (`SKILL.md` com frontmatter YAML). Na
+instalação, o CLI separa frontmatter e corpo, e reescreve nos moldes de cada ferramenta:
+
+```
+skills/mentor-dev/SKILL.md
+        │
+        ├── claude    → copia a pasta inteira, sem conversão
+        ├── cursor    → frontmatter .mdc (description + alwaysApply)
+        ├── windsurf  → frontmatter de regra (trigger: model_decision)
+        ├── copilot   → frontmatter de instruções (applyTo)
+        ├── agents    → bloco marcado em AGENTS.md, títulos rebaixados
+        └── print     → corpo puro, pra colar em qualquer chat
+```
+
+Só o alvo `claude` copia arquivos auxiliares (`references/`, scripts). Os outros leem apenas o
+conteúdo do `SKILL.md` — o CLI avisa quando algo ficou de fora.
+
+---
+
+## Contribuindo
+
+Issues e pull requests são bem-vindos. Veja [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Licença
+
+[MIT](LICENSE) © Nalberthdev

@@ -1,0 +1,41 @@
+{
+  "name": "nalberth-skills",
+  "version": "1.0.0",
+  "description": "Skills de IA em portugues, instalaveis em Claude Code, Cursor, Windsurf, GitHub Copilot, Gemini CLI ou AGENTS.md com um comando",
+  "keywords": [
+    "ai",
+    "skills",
+    "prompts",
+    "claude-code",
+    "cursor",
+    "windsurf",
+    "copilot",
+    "agents-md",
+    "mentoring",
+    "portugues"
+  ],
+  "homepage": "https://github.com/Nalberthdev/skills.nalberth#readme",
+  "bugs": {
+    "url": "https://github.com/Nalberthdev/skills.nalberth/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nalberthdev/skills.nalberth.git"
+  },
+  "license": "MIT",
+  "author": "Nalberthdev",
+  "bin": {
+    "nalberth-skills": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "skills"
+  ],
+  "scripts": {
+    "test": "node bin/cli.js validate",
+    "validate": "node bin/cli.js validate"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

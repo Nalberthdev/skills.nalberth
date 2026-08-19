@@ -1,0 +1,32 @@
+# Dependências
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Artefatos de publicação
+*.tgz
+dist/
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores
+.idea/
+*.swp
+
+# Configuração local do Claude Code (não versionar preferências de máquina)
+.claude/settings.local.json
+
+# Alvos de instalação, caso alguém teste o CLI dentro deste repo
+.cursor/
+.windsurf/
+.github/instructions/
+AGENTS.md
+GEMINI.md
