@@ -1,7 +1,7 @@
 {
-  "name": "nalberth-skills",
-  "version": "1.1.0",
-  "description": "Skills de IA em portugues, instalaveis em Claude Code, Cursor, Windsurf, GitHub Copilot, Gemini CLI ou AGENTS.md com um comando",
+  "name": "mentordev",
+  "version": "1.2.0",
+  "description": "Mentor senior para a sua IA: ensina a ler codigo em vez de entregar codigo pronto. Instala em Claude Code, Cursor, Windsurf, GitHub Copilot, Gemini CLI ou AGENTS.md com um comando",
   "keywords": [
     "ai",
     "skills",
@@ -14,18 +14,18 @@
     "mentoring",
     "portugues"
   ],
-  "homepage": "https://github.com/Nalberthdev/skills.nalberth#readme",
+  "homepage": "https://github.com/Nalberthdev/mentordev#readme",
   "bugs": {
-    "url": "https://github.com/Nalberthdev/skills.nalberth/issues"
+    "url": "https://github.com/Nalberthdev/mentordev/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nalberthdev/skills.nalberth.git"
+    "url": "git+https://github.com/Nalberthdev/mentordev.git"
   },
   "license": "MIT",
   "author": "Nalberthdev",
   "bin": {
-    "nalberth-skills": "bin/cli.js"
+    "mentordev": "bin/cli.js"
   },
   "files": [
     "bin",

@@ -89,20 +89,40 @@ function escapeRegExp(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// Prefixo dos marcadores gravados em arquivos compartilhados. O repositorio ja
+// se chamou "nalberth-skills"; manter o prefixo antigo reconhecido evita que
+// quem instalou antes do rename ganhe um bloco duplicado ao reinstalar.
+const MARKER = "mentordev";
+const LEGACY_MARKERS = ["nalberth-skills"];
+
+function markerPair(skillName) {
+  return {
+    start: `<!-- ${MARKER}:${skillName} -->`,
+    end: `<!-- /${MARKER}:${skillName} -->`,
+  };
+}
+
+/** Casa o bloco da skill escrito com o prefixo atual ou com qualquer prefixo antigo. */
+function blockRegExp(skillName, { greedyNewlines = false } = {}) {
+  const prefixes = [MARKER, ...LEGACY_MARKERS].map(escapeRegExp).join("|");
+  const name = escapeRegExp(skillName);
+  const pad = greedyNewlines ? "\\n*" : "";
+  return new RegExp(
+    `${pad}<!-- (?:${prefixes}):${name} -->[\\s\\S]*?<!-- /(?:${prefixes}):${name} -->${pad}`
+  );
+}
+
 /**
  * Insere ou substitui um bloco delimitado por marcadores em um arquivo
  * compartilhado (AGENTS.md, GEMINI.md). Idempotente: reinstalar substitui
  * o bloco anterior em vez de duplicar.
  */
 function upsertBlock(filePath, skillName, content) {
-  const start = `<!-- nalberth-skills:${skillName} -->`;
-  const end = `<!-- /nalberth-skills:${skillName} -->`;
+  const { start, end } = markerPair(skillName);
   const block = `${start}\n${content}\n${end}`;
 
-  const existed = fs.existsSync(filePath);
-  let current = existed ? fs.readFileSync(filePath, "utf8") : "";
-
-  const blockRe = new RegExp(`${escapeRegExp(start)}[\\s\\S]*?${escapeRegExp(end)}`);
+  let current = fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : "";
+  const blockRe = blockRegExp(skillName);
   let action;
 
   if (blockRe.test(current)) {
@@ -120,9 +140,7 @@ function upsertBlock(filePath, skillName, content) {
 
 function removeBlock(filePath, skillName) {
   if (!fs.existsSync(filePath)) return false;
-  const start = `<!-- nalberth-skills:${skillName} -->`;
-  const end = `<!-- /nalberth-skills:${skillName} -->`;
-  const blockRe = new RegExp(`\\n*${escapeRegExp(start)}[\\s\\S]*?${escapeRegExp(end)}\\n*`);
+  const blockRe = blockRegExp(skillName, { greedyNewlines: true });
   const current = fs.readFileSync(filePath, "utf8");
   if (!blockRe.test(current)) return false;
   const next = current.replace(blockRe, "\n\n").trim();
@@ -407,7 +425,7 @@ function resolveSkillNames(flags, names) {
 
   if (selected.length === 0) {
     console.error("Informe o nome de ao menos uma skill, ou use --all.");
-    console.error("Use `nalberth-skills list` para ver as opcoes.");
+    console.error("Use `mentordev list` para ver as opcoes.");
     process.exitCode = 1;
     return null;
   }
@@ -444,7 +462,7 @@ function cmdAdd(args) {
   for (const dirName of selected) {
     const skill = readSkill(dirName);
     if (!skill) {
-      console.error(`Skill "${dirName}" nao encontrada. Rode \`nalberth-skills list\`.`);
+      console.error(`Skill "${dirName}" nao encontrada. Rode \`mentordev list\`.`);
       process.exitCode = 1;
       continue;
     }
@@ -490,14 +508,14 @@ function cmdRemove(args) {
 }
 
 function printHelp() {
-  console.log(`nalberth-skills v${VERSION} - instala skills de IA em qualquer maquina
+  console.log(`mentordev v${VERSION} - instala skills de IA em qualquer maquina
 
 Uso:
-  nalberth-skills list                      Lista as skills disponiveis
-  nalberth-skills targets                   Lista os alvos de IA suportados
-  nalberth-skills add <skill...>            Instala skill(s)
-  nalberth-skills remove <skill...>         Remove skill(s) instalada(s)
-  nalberth-skills validate                  Checa o formato das skills do repo
+  mentordev list                      Lista as skills disponiveis
+  mentordev targets                   Lista os alvos de IA suportados
+  mentordev add <skill...>            Instala skill(s)
+  mentordev remove <skill...>         Remove skill(s) instalada(s)
+  mentordev validate                  Checa o formato das skills do repo
 
 Flags:
   -t, --target <alvo>   Ferramenta de destino (padrao: ${DEFAULT_TARGET})
@@ -505,12 +523,12 @@ Flags:
       --all             Aplica a todas as skills disponiveis
 
 Exemplos:
-  npx nalberth-skills add mentor-dev                      # Claude Code, global
-  npx nalberth-skills add mentor-dev --target cursor      # Cursor, neste projeto
-  npx nalberth-skills add mentor-dev -t agents            # AGENTS.md (qualquer IA)
-  npx nalberth-skills add --all --target copilot          # todas, para o Copilot
-  npx nalberth-skills add mentor-dev -t print | pbcopy    # copia pra colar num chat
-  npx nalberth-skills remove mentor-dev                   # desinstala
+  npx mentordev add mentor-dev                      # Claude Code, global
+  npx mentordev add mentor-dev --target cursor      # Cursor, neste projeto
+  npx mentordev add mentor-dev -t agents            # AGENTS.md (qualquer IA)
+  npx mentordev add --all --target copilot          # todas, para o Copilot
+  npx mentordev add mentor-dev -t print | pbcopy    # copia pra colar num chat
+  npx mentordev remove mentor-dev                   # desinstala
 `);
 }
 

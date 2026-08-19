@@ -7,6 +7,23 @@ segue [SemVer](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+## [1.2.0] - 2026-08-19
+
+### Alterado
+
+- O repositorio e o pacote passam a se chamar `mentordev` (antes `skills.nalberth` /
+  `nalberth-skills`). A URL antiga do GitHub continua redirecionando.
+- README reescrito para abrir pela proposta da skill, nao pelo CLI.
+
+### Corrigido
+
+- Os marcadores gravados em arquivos compartilhados passaram de `nalberth-skills:` para
+  `mentordev:`. O CLI continua reconhecendo o prefixo antigo ao instalar e remover, para que quem
+  instalou antes do rename tenha o bloco substituido em vez de duplicado.
+
+[Não lançado]: https://github.com/Nalberthdev/mentordev/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/Nalberthdev/mentordev/compare/v1.1.0...v1.2.0
+
 ## [1.1.0] - 2026-08-19
 
 ### Adicionado
@@ -29,8 +46,7 @@ segue [SemVer](https://semver.org/lang/pt-BR/).
 - O propósito da skill passa a ser declarado de frente: fechar a distância entre o código que a IA
   gera e o que a pessoa consegue ler.
 
-[Não lançado]: https://github.com/Nalberthdev/skills.nalberth/compare/v1.1.0...HEAD
-[1.1.0]: https://github.com/Nalberthdev/skills.nalberth/compare/v1.0.0...v1.1.0
+[1.1.0]: https://github.com/Nalberthdev/mentordev/compare/v1.0.0...v1.1.0
 
 ## [1.0.0] - 2026-08-19
 
@@ -38,7 +54,7 @@ Primeira versão pública.
 
 ### Adicionado
 
-- CLI `nalberth-skills` com os comandos `list`, `targets`, `add`, `remove` e `validate`.
+- CLI `mentordev` com os comandos `list`, `targets`, `add`, `remove` e `validate`.
 - Instalação em múltiplas ferramentas de IA via `--target`: `claude`, `cursor`, `windsurf`,
   `copilot`, `agents`, `gemini` e `print`.
 - Instalação idempotente em arquivos compartilhados (`AGENTS.md`, `GEMINI.md`) usando marcadores
@@ -53,4 +69,4 @@ Primeira versão pública.
 - A skill `mentor-junior` virou `mentor-dev`, agora calibrada pelo nível que a pessoa declara em
   vez de assumir que quem usa é júnior.
 
-[1.0.0]: https://github.com/Nalberthdev/skills.nalberth/releases/tag/v1.0.0
+[1.0.0]: https://github.com/Nalberthdev/mentordev/releases/tag/v1.0.0

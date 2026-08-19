@@ -1,13 +1,27 @@
-# nalberth-skills
+# mentordev
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org)
 
-Minhas skills de IA em português, instaláveis em qualquer máquina e em **qualquer ferramenta de
-IA** com um comando.
+> **A IA cospe código mais rápido do que você consegue entender.**
+> Isso transforma a sua IA num mentor sênior que te obriga a entender.
 
-Você escreve a skill uma vez. O CLI converte para o formato que cada ferramenta entende — Claude
-Code, Cursor, Windsurf, GitHub Copilot, Gemini CLI ou o padrão aberto `AGENTS.md`.
+`mentordev` é uma skill de mentoria que funciona em **qualquer ferramenta de IA** — Claude Code,
+Cursor, Windsurf, GitHub Copilot, Gemini CLI, ChatGPT. Um comando instala.
+
+Em vez de te entregar código pronto, ela:
+
+- **te ensina a ler** cada linha, em vez de só explicar o que ela faz;
+- **traduz todo conceito abstrato** numa comparação do mundo real — e diz onde a comparação quebra;
+- **exige justificativa** de toda decisão técnica: se você não sabe explicar, você chutou;
+- **marca com `TOME NOTA DISSO`** o que você leva pra carreira inteira, não só pra esta tarefa;
+- **te para** quando você foge pra zona de conforto ou conserta o sintoma na camada errada.
+
+Ela se calibra pelo nível e pela área que você declara — júnior, pleno ou sênior; front, back ou
+fullstack. O nível gradua **quanto ela entrega antes de cobrar**, nunca o quanto ela cobra.
+
+O repositório também traz o CLI que instala a skill em qualquer uma dessas ferramentas: você
+escreve uma vez, ele converte para o formato que cada uma entende.
 
 ---
 
@@ -17,13 +31,13 @@ Não precisa clonar nem instalar nada — o `npx` baixa direto do GitHub e roda 
 
 ```bash
 # ver o que existe
-npx github:Nalberthdev/skills.nalberth list
+npx github:Nalberthdev/mentordev list
 
 # instalar no Claude Code (padrão, vale pra todos os seus projetos)
-npx github:Nalberthdev/skills.nalberth add mentor-dev
+npx github:Nalberthdev/mentordev add mentor-dev
 
 # instalar no Cursor, só neste projeto
-npx github:Nalberthdev/skills.nalberth add mentor-dev --target cursor
+npx github:Nalberthdev/mentordev add mentor-dev --target cursor
 ```
 
 Requer [Node.js](https://nodejs.org) 18 ou superior e `git` instalado.
@@ -31,18 +45,18 @@ Requer [Node.js](https://nodejs.org) 18 ou superior e `git` instalado.
 Se digitar muito, crie um atalho no seu shell:
 
 ```bash
-alias nskills='npx -y github:Nalberthdev/skills.nalberth'
-nskills add mentor-dev --target cursor
+alias mentordev='npx -y github:Nalberthdev/mentordev'
+mentordev add mentor-dev --target cursor
 ```
 
-> **Ainda não está no npm.** `npx nalberth-skills` responde `404 Not Found` — use a forma
+> **Ainda não está no npm.** `npx mentordev` responde `404 Not Found` — use a forma
 > `github:` acima. Quando o pacote for publicado, o nome curto passa a funcionar também.
 
 Prefere clonar?
 
 ```bash
-git clone https://github.com/Nalberthdev/skills.nalberth.git
-cd skills.nalberth
+git clone https://github.com/Nalberthdev/mentordev.git
+cd mentordev
 node bin/cli.js add mentor-dev
 ```
 
@@ -63,9 +77,9 @@ node bin/cli.js add mentor-dev
 Não achou a sua? Use `print` e cole no chat:
 
 ```bash
-npx github:Nalberthdev/skills.nalberth add mentor-dev -t print   # imprime na tela
-npx github:Nalberthdev/skills.nalberth add mentor-dev -t print | xclip -sel c
-npx github:Nalberthdev/skills.nalberth add mentor-dev -t print | pbcopy  # macOS
+npx github:Nalberthdev/mentordev add mentor-dev -t print   # imprime na tela
+npx github:Nalberthdev/mentordev add mentor-dev -t print | xclip -sel c
+npx github:Nalberthdev/mentordev add mentor-dev -t print | pbcopy  # macOS
 ```
 
 Instalar em alvos que compartilham um arquivo (`agents`, `gemini`) é **idempotente**: a skill entra
@@ -75,15 +89,15 @@ entre marcadores HTML e reinstalar substitui o bloco anterior em vez de duplicar
 
 ## Comandos
 
-Nos exemplos abaixo, `nalberth-skills` é abreviação de
-`npx github:Nalberthdev/skills.nalberth` (ou do `alias` sugerido acima).
+Nos exemplos abaixo, `mentordev` é abreviação de
+`npx github:Nalberthdev/mentordev` (ou do `alias` sugerido acima).
 
 ```bash
-nalberth-skills list                  # lista as skills disponíveis
-nalberth-skills targets               # lista os alvos de IA suportados
-nalberth-skills add <skill...>        # instala
-nalberth-skills remove <skill...>     # desinstala
-nalberth-skills validate              # checa o formato das skills do repositório
+mentordev list                  # lista as skills disponíveis
+mentordev targets               # lista os alvos de IA suportados
+mentordev add <skill...>        # instala
+mentordev remove <skill...>     # desinstala
+mentordev validate              # checa o formato das skills do repositório
 ```
 
 **Flags:**
@@ -96,10 +110,10 @@ nalberth-skills validate              # checa o formato das skills do repositór
 
 ```bash
 # todas as skills, para o Copilot, neste projeto
-npx github:Nalberthdev/skills.nalberth add --all --target copilot
+npx github:Nalberthdev/mentordev add --all --target copilot
 
 # desinstalar
-npx github:Nalberthdev/skills.nalberth remove mentor-dev
+npx github:Nalberthdev/mentordev remove mentor-dev
 ```
 
 ---

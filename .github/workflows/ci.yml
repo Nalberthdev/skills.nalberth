@@ -42,7 +42,7 @@ jobs:
         run: |
           cd /tmp/smoke
           HOME=/tmp/smoke node "$GITHUB_WORKSPACE/bin/cli.js" add --all --target agents
-          blocos=$(grep -c '^<!-- nalberth-skills:[^/]' AGENTS.md)
+          blocos=$(grep -c '^<!-- mentordev:[^/]' AGENTS.md)
           skills=$(find "$GITHUB_WORKSPACE/skills" -mindepth 1 -maxdepth 1 -type d | wc -l)
           echo "blocos=$blocos skills=$skills"
           test "$blocos" -eq "$skills"

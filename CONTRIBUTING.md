@@ -6,8 +6,8 @@ instala em várias ferramentas.
 ## Rodando localmente
 
 ```bash
-git clone https://github.com/Nalberthdev/skills.nalberth.git
-cd skills.nalberth
+git clone https://github.com/Nalberthdev/mentordev.git
+cd mentordev
 
 node bin/cli.js list
 node bin/cli.js validate
@@ -19,8 +19,8 @@ Para testar o comando como ele será usado de verdade:
 
 ```bash
 npm link
-nalberth-skills targets
-npm unlink -g nalberth-skills   # quando terminar
+mentordev targets
+npm unlink -g mentordev   # quando terminar
 ```
 
 Ao testar instalação, prefira um diretório descartável — os alvos escrevem em `~/.claude`,
@@ -68,7 +68,7 @@ Alvos ficam no objeto `TARGETS` em `bin/cli.js`. Cada um precisa de:
 
 | Campo     | O que é                                                             |
 | --------- | ------------------------------------------------------------------- |
-| `label`   | nome legível, mostrado em `nalberth-skills targets`                  |
+| `label`   | nome legível, mostrado em `mentordev targets`                  |
 | `scopes`  | `["global", "local"]`, ou só um dos dois                             |
 | `pathFor` | `(skill, isLocal) => caminho de destino`                             |
 | `install` | `(skill, isLocal) => { action, dest }`                               |
