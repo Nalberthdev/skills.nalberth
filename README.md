@@ -23,7 +23,7 @@ fullstack. O nível gradua **quanto ela entrega antes de cobrar**, nunca o quant
 O repositório também traz o CLI que instala a skill em qualquer uma dessas ferramentas: você
 escreve uma vez, ele converte para o formato que cada uma entende.
 
----
+----------------------
 
 ## Instalação rápida
 
