@@ -226,5 +226,5 @@ Issues e pull requests são bem-vindos. Veja [CONTRIBUTING.md](CONTRIBUTING.md).
 [MIT](LICENSE) © Nalberthdev
 
 A ilustração do topo é *Mentor instruindo Telêmaco*, de Pablo E. Fabisch, para a edição de 1699 de
-*Les Aventures de Télémaque*. Domínio público, via
+*Les Aventures de Télémaque*. Domínio público, via link URL:
 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Telemachus_and_Mentor1.JPG).
