@@ -13,20 +13,38 @@ Code, Cursor, Windsurf, GitHub Copilot, Gemini CLI ou o padrão aberto `AGENTS.m
 
 ## Instalação rápida
 
-Não precisa clonar nem instalar nada — o `npx` baixa e roda na hora:
+Não precisa clonar nem instalar nada — o `npx` baixa direto do GitHub e roda na hora:
 
 ```bash
 # ver o que existe
-npx nalberth-skills list
+npx github:Nalberthdev/skills.nalberth list
 
 # instalar no Claude Code (padrão, vale pra todos os seus projetos)
-npx nalberth-skills add mentor-dev
+npx github:Nalberthdev/skills.nalberth add mentor-dev
 
 # instalar no Cursor, só neste projeto
-npx nalberth-skills add mentor-dev --target cursor
+npx github:Nalberthdev/skills.nalberth add mentor-dev --target cursor
 ```
 
-Requer [Node.js](https://nodejs.org) 18 ou superior.
+Requer [Node.js](https://nodejs.org) 18 ou superior e `git` instalado.
+
+Se digitar muito, crie um atalho no seu shell:
+
+```bash
+alias nskills='npx -y github:Nalberthdev/skills.nalberth'
+nskills add mentor-dev --target cursor
+```
+
+> **Ainda não está no npm.** `npx nalberth-skills` responde `404 Not Found` — use a forma
+> `github:` acima. Quando o pacote for publicado, o nome curto passa a funcionar também.
+
+Prefere clonar?
+
+```bash
+git clone https://github.com/Nalberthdev/skills.nalberth.git
+cd skills.nalberth
+node bin/cli.js add mentor-dev
+```
 
 ---
 
@@ -45,9 +63,9 @@ Requer [Node.js](https://nodejs.org) 18 ou superior.
 Não achou a sua? Use `print` e cole no chat:
 
 ```bash
-npx nalberth-skills add mentor-dev --target print          # imprime na tela
-npx nalberth-skills add mentor-dev -t print | xclip -sel c # copia direto (Linux)
-npx nalberth-skills add mentor-dev -t print | pbcopy       # copia direto (macOS)
+npx github:Nalberthdev/skills.nalberth add mentor-dev -t print   # imprime na tela
+npx github:Nalberthdev/skills.nalberth add mentor-dev -t print | xclip -sel c
+npx github:Nalberthdev/skills.nalberth add mentor-dev -t print | pbcopy  # macOS
 ```
 
 Instalar em alvos que compartilham um arquivo (`agents`, `gemini`) é **idempotente**: a skill entra
@@ -56,6 +74,9 @@ entre marcadores HTML e reinstalar substitui o bloco anterior em vez de duplicar
 ---
 
 ## Comandos
+
+Nos exemplos abaixo, `nalberth-skills` é abreviação de
+`npx github:Nalberthdev/skills.nalberth` (ou do `alias` sugerido acima).
 
 ```bash
 nalberth-skills list                  # lista as skills disponíveis
@@ -75,10 +96,10 @@ nalberth-skills validate              # checa o formato das skills do repositór
 
 ```bash
 # todas as skills, para o Copilot, neste projeto
-npx nalberth-skills add --all --target copilot
+npx github:Nalberthdev/skills.nalberth add --all --target copilot
 
 # desinstalar
-npx nalberth-skills remove mentor-dev
+npx github:Nalberthdev/skills.nalberth remove mentor-dev
 ```
 
 ---
@@ -124,7 +145,7 @@ Este repositório é um esqueleto: dá pra fazer fork e trocar por skills suas.
    O conteúdo da skill em markdown.
    ```
 
-3. Rode `npx nalberth-skills validate` — ele confere que o `name` bate com o nome da pasta, que a
+3. Rode `node bin/cli.js validate` — ele confere que o `name` bate com o nome da pasta, que a
    `description` existe e que o corpo não está vazio.
 
 A `description` é o que faz a IA decidir sozinha se aciona a skill. Escreva ela como gatilho
