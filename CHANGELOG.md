@@ -7,6 +7,11 @@ segue [SemVer](https://semver.org/lang/pt-BR/).
 
 ## [Não lançado]
 
+### Adicionado
+
+- Ilustração de Mentor instruindo Telêmaco no topo do README, com a origem da palavra "mentor".
+  Imagem em dominio publico, versionada em `docs/` em vez de hotlinkada do Wikimedia.
+
 ## [1.2.0] - 2026-08-19
 
 ### Alterado

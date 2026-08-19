@@ -1,7 +1,23 @@
-# mentordev
+<p align="center">
+  <img
+    src="https://raw.githubusercontent.com/Nalberthdev/mentordev/main/docs/mentor-telemaco.jpg"
+    width="190"
+    alt="Mentor instruindo Telêmaco, ilustração de Pablo E. Fabisch">
+</p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org)
+<h1 align="center">mentordev</h1>
+
+<p align="center">
+  <em>
+    Na Odisseia, Ulisses parte para a guerra e entrega a educação do filho<br>
+    a um único homem: <strong>Mentor</strong>. É daí que vem a palavra.
+  </em>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="Licença MIT"></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg" alt="Node 18 ou superior"></a>
+</p>
 
 > **A IA cospe código mais rápido do que você consegue entender.**
 > Isso transforma a sua IA num mentor sênior que te obriga a entender.
@@ -208,3 +224,7 @@ Issues e pull requests são bem-vindos. Veja [CONTRIBUTING.md](CONTRIBUTING.md).
 ## Licença
 
 [MIT](LICENSE) © Nalberthdev
+
+A ilustração do topo é *Mentor instruindo Telêmaco*, de Pablo E. Fabisch, para a edição de 1699 de
+*Les Aventures de Télémaque*. Domínio público, via
+[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Telemachus_and_Mentor1.JPG).
